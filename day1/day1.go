@@ -46,7 +46,11 @@ func convStrNumber(str string) string {
 }
 
 func part1(debug ...bool) {
-	fmt.Println("Day 1 has arrived!")
+	if len(debug) == 0 {
+		debug = append(debug, false)
+	}
+
+	fmt.Println("Day 1: Challenge 1")
 	var inputs []string
 	var results []int
 
@@ -69,7 +73,9 @@ func part1(debug ...bool) {
 		return
 	}
 
-	fmt.Printf("Inputs: %d\n", len(inputs))
+	if debug[0] {
+		fmt.Printf("Inputs: %d\n", len(inputs))
+	}
 
 	// Loop through each string
 	// -- Find the first digit from the front
@@ -87,7 +93,9 @@ func part1(debug ...bool) {
 	}
 
 	for index, input := range inputs {
-		fmt.Printf("Input %d: %s\n", index+1, input)
+		if debug[0] {
+			fmt.Printf("Input %d: %s\n", index+1, input)
+		}
 		front := regexFront.FindStringSubmatch(input)
 		back := regexBack.FindStringSubmatch(input)
 		resultInt, err := strconv.Atoi(front[1] + back[1])
@@ -95,16 +103,18 @@ func part1(debug ...bool) {
 			fmt.Println("Error converting resulting string to int")
 			return
 		}
-		fmt.Printf("Result: %d\n", resultInt)
+		if debug[0] {
+			fmt.Printf("Result: %d\n", resultInt)
+		}
 		results = append(results, resultInt)
 	}
 
 	// Sum all values in the array
-	fmt.Printf("\nSum: %d\n", sumSlice(results))
+	fmt.Printf("Sum: %d\n", sumSlice(results))
 }
 
 func part2(debug ...bool) {
-	fmt.Println("Day 1 - Part 2")
+	fmt.Println("Day 1: Challenge 2")
 	if len(debug) == 0 {
 		debug = append(debug, false)
 	}
@@ -168,11 +178,11 @@ func part2(debug ...bool) {
 	}
 
 	// Sum all values in the array
-	fmt.Println(strings.Repeat("^", 20))
 	fmt.Printf("Sum: %d\n", sumSlice(results))
 }
 
 func main() {
-	//part1()
+	part1()
+	fmt.Println(strings.Repeat("=", 20))
 	part2()
 }
