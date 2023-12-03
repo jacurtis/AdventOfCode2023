@@ -45,7 +45,7 @@ func convStrNumber(str string) string {
 
 }
 
-func part1(debug ...bool) {
+func Part1(debug ...bool) {
 	if len(debug) == 0 {
 		debug = append(debug, false)
 	}
@@ -113,7 +113,7 @@ func part1(debug ...bool) {
 	fmt.Printf("Sum: %d\n", sumSlice(results))
 }
 
-func part2(debug ...bool) {
+func Part2(debug ...bool) {
 	fmt.Println("Day 1: Challenge 2")
 	if len(debug) == 0 {
 		debug = append(debug, false)
@@ -182,7 +182,7 @@ func part2(debug ...bool) {
 }
 
 func main() {
-	part1()
+	Part1()
 	fmt.Println(strings.Repeat("=", 20))
-	part2()
+	Part2()
 }
