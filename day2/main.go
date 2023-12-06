@@ -56,32 +56,48 @@ func Part1(debug ...bool) {
 	for scanner.Scan() {
 		parseGame(0, scanner.Text())
 	}
-	//
+
+	var part2sum = 0
 	for round_number, game := range game_rounds {
 		valid := true
+		maxColorValues := map[string]int{
+			"red":   0,
+			"blue":  0,
+			"green": 0,
+		}
 		for _, v := range game {
+
 			for _, item := range v {
 				parsed := strings.Split(strings.TrimSpace(item), " ")
 				cube := parsed[1]
 				num, _ := strconv.Atoi(parsed[0])
 
+				if num > maxColorValues[cube] {
+					maxColorValues[cube] = num
+				}
+
 				if num <= max[cube] {
 					fmt.Println("Valid", cube, num)
 				} else {
 					valid = false
-					break
+					//break
 				}
+
 			}
-			if !valid {
-				break
-			}
+			//if !valid {
+			//	break
+			//}
+
 		}
 
 		if valid {
 			total += round_number
 		}
+		gameProduct := maxColorValues["red"] * maxColorValues["blue"] * maxColorValues["green"]
+		part2sum += gameProduct
 	}
 	fmt.Println("Total: ", total)
+	fmt.Println("Part 2 Sum: ", part2sum)
 }
 
 func main() {
